@@ -1,6 +1,6 @@
 # Activity Objective
 
-The goal of Graphics Activities are to improve familiarity with
+The goal of this graphics activity is to improve your familiarity with
 graphical libraries and their customization abilities. For this
 activity, the goal is to recreate a box plot generated using the
 `ggplot2` package in R.
@@ -18,38 +18,51 @@ running `?function_name` will open the documentation menu in RStudio.
 For example, to understand what the `ggplot()` function does, we could
 run `?ggplot`.
 
+The [ggplot2
+cheatsheet](https://www.datacamp.com/cheat-sheet/ggplot2-cheat-sheet)
+and the [ggplot2 package page](https://ggplot2.tidyverse.org/) might
+also be helpful. Almost all tidyverse packages have these.
+
 ## Required Packages
 
-Install the following packages if you don’t have them.
+Install the following packages if you don't have them.
 
-    install.packages("dplyr")
-    install.packages("ggplot2")
-    install.packages("stringr")
+``` r
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("stringr")
+```
 
 Load all libraries
 
-    library(dplyr)
-    library(ggplot2)
-    library(stringr)
+``` r
+library(dplyr)
+library(ggplot2)
+library(stringr)
+```
 
 ## Data and Additional Variables
 
 This is the data set you will use to make the plots
 
-    # Load the data set from dplyr as storms_df
-    storms_df <- dplyr::storms
-    storms_df
+``` r
+# Load the data set from dplyr as storms_df
+storms_df <- dplyr::storms
+storms_df
+```
 
 These are some additional variables/formatting you will need
 
-    # The list of statuses you will want to use
-    status_list <- c("tropical depression", "tropical storm", "hurricane", "extratropical")
+``` r
+# The list of statuses you will want to use
+status_list <- c("tropical depression", "tropical storm", "hurricane", "extratropical")
 
-    # Convert the levels of the Pressure column factor to match those of the status_list
-    storms_df$status <- factor(storms_df$status, levels = status_list)
+# Convert the levels of the Pressure column factor to match those of the status_list
+storms_df$status <- factor(storms_df$status, levels = status_list)
 
-    # This will be required to make an annotation on the graphic
-    pressure_quantile <- quantile(storms_df$pressure, probs = c(.25, .75, .5))
+# This will be required to make an annotation on the graphic
+pressure_quantile <- quantile(storms_df$pressure, probs = c(.25, .75, .5))
+```
 
 ## Formatting Notes
 
@@ -64,7 +77,7 @@ identical as possible.
     formatting
 -   The colors of the box plots use the 3rd palette from the
     `scale_fill_brewer()` function
--   Sizes of texts are…
+-   Sizes of texts are...
     -   Title is `size=rel(1.5)`
     -   Title of x is `size=rel(1.10)` and margins are
         `margin(t = 5,b = 5)`
@@ -82,4 +95,6 @@ The submission will be the code used to generate the graphic and the
 image itself. You can save the graphic using the following code.
 Remember to add metadata to the top of your submission file.
 
-    ggsave(filename = "result/Graphics_Activity_One.jpg", plot = plot, width = 10, height = 8, units = "in", dpi = 300)
+``` r
+ggsave(filename = "result/Graphics_Activity_One.jpg", plot = plot, width = 10, height = 8, units = "in", dpi = 300)
+```
